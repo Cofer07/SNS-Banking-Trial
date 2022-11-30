@@ -94,7 +94,7 @@ public class AppController {
     public @ResponseBody Account getUserAccount (int accountId){
         Optional<Account> optionalAccount = accountRepository.findById(accountId);
         Account account = optionalAccount.stream().findFirst().orElse(null);
-        return
+        return account;
     }
 
     @PostMapping(path="/make-transaction") // Map ONLY POST Requests
