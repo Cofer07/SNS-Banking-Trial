@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SNS Banking Limited</title>
+    <link rel="icon" href="Logo%20Mini.png">
+
+    <!--Bootstrap CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!--jquery cdn-->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="table.css">
+</head>
+
+<style>
+</style>
+<body>
+<header>
+    <a href="dashboard.html" class="logo"><img src="images/LogoMini.png" style="width: 50px; height: 50px; justify-self: center;">SNS Banking Limited</a>
+    <div class="mean-toggle"></div>
+    <nav>
+        <ul>
+            <li><a href="transaction_history.html">Transaction History</a></li>
+            <li><a href="money_transfer.html">Money Transfer</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="login.html">Logout</a></li>
+            <!--                <li><a href="#">Portfolio</a></li>-->
+            <!--                <li><a href="#">Contact</a></li>-->
+        </ul>
+    </nav>
+    <div class="clear"></div>
+</header>
+
+<div class="row">
+    <div class="col-12 col-md-8">
+        <div>
+            <div class="container">
+                <h2>Account's Details</h2>
+                <ul class="responsive-table">
+                    <li class="table-header">
+                        <div class="col col-1">#</div>
+                        <div class="col col-2">Account Number</div>
+                        <div class="col col-3">Amount Type</div>
+                        <div class="col col-4">Balance</div>
+                    </li>
+                    <li class="table-row" th:each="account: ${listAccounts}">
+                        <div  class="col col-1" th:text="${account.ID}"></div>
+                        <div class="col col-2">123</div>
+                        <div class="col col-3">Debit</div>
+                        <div class="col col-4">$ 20000</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="container">
+                <h2>Recent Transactions</h2>
+                <ul class="responsive-table">
+                    <li class="table-header">
+                        <div class="col col-1">Job Id</div>
+                        <div class="col col-2">Customer Name</div>
+                        <div class="col col-3">Amount Due</div>
+                        <div class="col col-4">Payment Status</div>
+                    </li>
+                    <li class="table-row">
+                        <div class="col col-1" data-label="Job Id">42235</div>
+                        <div class="col col-2" data-label="Customer Name">John Doe</div>
+                        <div class="col col-3" data-label="Amount">$350</div>
+                        <div class="col col-4" data-label="Payment Status">Pending</div>
+                    </li>
+                    <li class="table-row">
+                        <div class="col col-1" data-label="Job Id">42442</div>
+                        <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
+                        <div class="col col-3" data-label="Amount">$220</div>
+                        <div class="col col-4" data-label="Payment Status">Pending</div>
+                    </li>
+                    <li class="table-row">
+                        <div class="col col-1" data-label="Job Id">42257</div>
+                        <div class="col col-2" data-label="Customer Name">John Smith</div>
+                        <div class="col col-3" data-label="Amount">$341</div>
+                        <div class="col col-4" data-label="Payment Status">Pending</div>
+                    </li>
+                    <li class="table-row">
+                        <div class="col col-1" data-label="Job Id">42311</div>
+                        <div class="col col-2" data-label="Customer Name">John Carpenter</div>
+                        <div class="col col-3" data-label="Amount">$115</div>
+                        <div class="col col-4" data-label="Payment Status">Pending</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4">
+        <!--            <div class="card" style="position: sticky; top: 0;">-->
+        <!--                <img src="img_avatar.png" alt="Avatar" style="width:100%; border-radius: 50%; padding: 10px;">-->
+        <!--                <div class="container">-->
+        <!--                    <h4><b>Suman Dep Nath</b></h4>-->
+        <!--                    <dl>-->
+        <!--                        <dt>Address:</dt>-->
+        <!--                        <dd>4 - 112 Queen Street, Saint John, New Brunswick, E2L 1S4</dd>-->
+        <!--                        <dt>Phone Number: </dt>-->
+        <!--                        <dd>(506) 898 2609</dd>-->
+        <!--                        <dt>Email:</dt>-->
+        <!--                        <dd>sumandepnath7@gmail.com</dd>-->
+        <!--                    </dl>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <div class="card" style="position: sticky; top: 0;padding: 20px;">
+            <form class="was-validated">
+                <h1 style="text-align: center;">Add Funds to Account</h1>
+                <label for="amt" class="form-label">Enter Amount</label><br>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input id="amt" type="number" placeholder="0.00" step=".01" class="form-control" required><br>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <label for="acc_select" class="form-label">Select Account</label><br>
+                <select id="acc_select" class="form-select" required>
+                    <option value="">Select an Account</option>
+                    <option value="1">Savings</option>
+                    <option value="2">Chequing</option>
+                    <option value="3">Visa Credit</option>
+                </select>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+                <button class="btn btn-secondary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        $('.mean-toggle').click(function()
+        {
+            $('.mean-toggle').toggleClass('active')
+            $('nav').toggleClass('active')
+        })
+    })
+</script>
+</html>

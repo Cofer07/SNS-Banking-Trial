@@ -21,8 +21,9 @@ public class AppController {
 
     @GetMapping("")
     public String viewHomePage(){
-        return "index";
+        return "login";
     }
+
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
@@ -44,15 +45,20 @@ public class AppController {
 
         userRepo.save(user);
 
+        addAccount(user.getUserid(), "Savings");
+
         return "register_success";
     }
 
-    @GetMapping("/users")
-    public String listUsers(Model model) {
-        List<User> listUsers = userRepo.findAll();
-        model.addAttribute("listUsers", listUsers);
+    @PostMapping("/process_login")
+    public String processLogin(){
+        return "dashboard";
+    }
 
-        return "users";
+
+    @GetMapping("/dashboard")
+    public String dashboard(){
+        return "dashboard";
     }
 
     @GetMapping("/bank")
@@ -83,6 +89,12 @@ public class AppController {
         n.setEmail(email);
         userRepository.save(n);
         return "Saved";
+    }
+
+    public @ResponseBody Account getUserAccount (int accountId){
+        Optional<Account> optionalAccount = accountRepository.findById(accountId);
+        Account account = optionalAccount.stream().findFirst().orElse(null);
+        return
     }
 
     @PostMapping(path="/make-transaction") // Map ONLY POST Requests
@@ -213,4 +225,5 @@ public class AppController {
         // This returns a JSON or XML with the users
         return userRepository.findAll();
     }
+
 }

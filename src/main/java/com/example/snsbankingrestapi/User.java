@@ -26,7 +26,7 @@ public class User {
     @Column(nullable = true, unique = false, length=15)
     private String phoneNum;
 
-    @Column(nullable = true, unique = true, length=9)
+    @Column(nullable = true, unique = false, length=9)
     private int SIN;
 
     //Avatars need to be stored next, the datatype should probably be byte[]

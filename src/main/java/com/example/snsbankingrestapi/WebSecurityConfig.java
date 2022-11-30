@@ -48,13 +48,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/","/js/**","/css/**","/png/**").permitAll()
-                .antMatchers("/users").authenticated()
+                .antMatchers("/dashboard").authenticated()
                 .anyRequest().permitAll()
                 .and()
-                .formLogin(form -> form
-                        .loginPage("/")
-                        .permitAll()
-                )
+                .formLogin()
+                    .loginPage("/login.html").permitAll()
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/dashboard", true)
+                .and()
                 .logout().logoutSuccessUrl("/").permitAll();
     }
 }

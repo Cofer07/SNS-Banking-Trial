@@ -85,7 +85,7 @@
         <div class="formbg">
           <div class="formbg-inner padding-horizontal--48">
             <span class="padding-bottom--15">Sign in to your account</span>
-            <form id="stripe-login" th:action="@{/users}" method="post">
+            <form id="stripe-login" th:action="@{/process_login}" method="post">
               <div class="field padding-bottom--24">
                 <label for="email">Email</label>
                 <input type="email" name="email" autofocus="autofocus">
@@ -105,7 +105,7 @@
         <div class="footer-link padding-top--24">
           <span>Don't have an account? <a th:href="@{/register}">Sign up</a></span>
           <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
-            <span><a href="./index.html">© Sebastien-Nathan-Suman Canadian Banking Limited.</a></span>
+            <span><a href="./login.html">© Sebastien-Nathan-Suman Canadian Banking Limited.</a></span>
             <span><a href="#">Contact</a></span>
             <span><a href="#">Privacy & terms</a></span>
           </div>
