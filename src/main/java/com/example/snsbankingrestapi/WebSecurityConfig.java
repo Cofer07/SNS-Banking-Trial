@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
@@ -46,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        /*http.authorizeRequests()
                 .antMatchers("/","/js/**","/css/**","/png/**").permitAll()
                 .antMatchers("/users").authenticated()
                 .anyRequest().permitAll()
@@ -56,6 +55,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                 )
                 .logout().logoutSuccessUrl("/").permitAll();
+        */
+    	http
+	        .authorizeRequests()
+	            .antMatchers("/**.css", "/**.js", "/images/**", "/register", "/process_register", "/register_success").permitAll()
+	            .anyRequest().authenticated()
+	            .and()
+	        .formLogin()
+	            .loginPage("/login").defaultSuccessUrl("/dashboard", true)
+	            .permitAll()
+	            .and()
+	        .logout()
+	            .permitAll();
+    	
     }
 }
 

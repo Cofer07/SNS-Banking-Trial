@@ -2,6 +2,7 @@ package com.example.snsbankingrestapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,11 @@ public class AppController {
     public String viewHomePage(){
         return "index";
     }
+    
+    @GetMapping("/login")
+    public String login() {
+    	return "login";
+    }
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
@@ -31,20 +37,23 @@ public class AppController {
         return "signup_form";
     }
 
-//    @PostMapping("/register")
-//    public String processRegister() {
-//        return "register_success";
-//    }
-
     @PostMapping("/process_register")
     public String processRegister(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-
         userRepo.save(user);
 
         return "register_success";
+    }
+    
+    @GetMapping("/dashboard")
+    public String prepareDashboard(Model model, Authentication authentication) {
+    	CustomerUserDetails customerUserDetails = (CustomerUserDetails) authentication.getPrincipal();
+    	// here you can grab the details from the authenticated user
+    	model.addAttribute("userFullName", customerUserDetails.getFullName());
+    	model.addAttribute("userId", customerUserDetails.getUserId());
+    	return "bank";
     }
 
     @GetMapping("/users")

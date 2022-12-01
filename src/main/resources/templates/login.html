@@ -27,7 +27,7 @@
       </div>
       <div class="modal-body">
 
-        <p>Welcome to SNS Banking Limited.</p>
+        <p>Welcome to SNS Banking Limited. Login Page !!!</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -84,10 +84,13 @@
         <div class="formbg">
           <div class="formbg-inner padding-horizontal--48">
             <span class="padding-bottom--15">Sign in to your account</span>
-            <form id="stripe-login" th:action="@{/users}" method="post">
+            <form id="stripe-login" th:action="@{/login}" method="post">
+              <div class="field padding-bottom--24" th:if="${param.error}">
+              	Invalid username and password.
+              </div>
               <div class="field padding-bottom--24">
                 <label for="email">Email</label>
-                <input type="email" name="email" autofocus="autofocus">
+                <input type="email" name="username" autofocus="autofocus">
               </div>
               <div class="field padding-bottom--24">
                 <div class="grid--50-50">

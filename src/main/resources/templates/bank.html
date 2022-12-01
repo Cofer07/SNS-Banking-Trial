@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>yo</title>
 </head>
 <body>
-  <h1>Hello World</h1>
-
+  <h1>Welcome</h1>
+  <div><span th:text="${userFullName}"></span>
+  <div><span th:text="${userId}"></span>
+  </div>
 </body>
 </html>

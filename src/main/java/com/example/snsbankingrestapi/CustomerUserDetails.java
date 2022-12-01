@@ -52,4 +52,7 @@ public class CustomerUserDetails implements UserDetails {
         return user.getFname() + " " + user.getLname();
     }
 
+    public int getUserId() {
+    	return user.getUserid();
+    }
 }
