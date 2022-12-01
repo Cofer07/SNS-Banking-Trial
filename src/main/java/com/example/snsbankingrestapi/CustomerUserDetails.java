@@ -55,4 +55,8 @@ public class CustomerUserDetails implements UserDetails {
     public int getUserId() {
     	return user.getUserid();
     }
+    
+    public User getUser() {
+		return user;
+	}
 }

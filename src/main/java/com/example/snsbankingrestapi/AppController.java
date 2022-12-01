@@ -22,13 +22,14 @@ public class AppController {
 
     @GetMapping("")
     public String viewHomePage(){
-        return "index";
+        return "login";
     }
     
     @GetMapping("/login")
     public String login() {
     	return "login";
     }
+
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
@@ -44,6 +45,8 @@ public class AppController {
         user.setPassword(encodedPassword);
         userRepo.save(user);
 
+        addAccount(user.getUserid(), "Savings");
+
         return "register_success";
     }
     
@@ -53,21 +56,30 @@ public class AppController {
     	// here you can grab the details from the authenticated user
     	model.addAttribute("userFullName", customerUserDetails.getFullName());
     	model.addAttribute("userId", customerUserDetails.getUserId());
-    	return "bank";
+    	
+    	// get accounts
+    	List<Account> accounts = accountRepository.findByUserId(customerUserDetails.getUserId());
+    	model.addAttribute("listAccounts", accounts);
+    	//model.addAttribute("listAccounts", customerUserDetails.getUser().getAccounts());
+    	
+    	return "dashboard";
     }
 
-    @GetMapping("/users")
-    public String listUsers(Model model) {
-        List<User> listUsers = userRepo.findAll();
-        model.addAttribute("listUsers", listUsers);
-
-        return "users";
+    @PostMapping("/process_login")
+    public String processLogin(){
+        return "dashboard";
     }
 
-    @GetMapping("/bank")
-    public String Bank(){
-        return "bank";
-    }
+
+//    @GetMapping("/dashboard")
+//    public String dashboard(){
+//        return "dashboard";
+//    }
+
+//    @GetMapping("/bank")
+//    public String Bank(){
+//        return "bank";
+//    }
 
 
     @Autowired // This means to get the bean called userRepository
@@ -92,6 +104,14 @@ public class AppController {
         n.setEmail(email);
         userRepository.save(n);
         return "Saved";
+    }
+
+    public @ResponseBody Account getUserAccount (int accountId){
+        Optional<Account> optionalAccount = accountRepository.findById(accountId);
+        if (optionalAccount.isPresent()) {
+        	return optionalAccount.get();
+        }
+        return null;
     }
 
     @PostMapping(path="/make-transaction") // Map ONLY POST Requests
@@ -222,4 +242,5 @@ public class AppController {
         // This returns a JSON or XML with the users
         return userRepository.findAll();
     }
+
 }

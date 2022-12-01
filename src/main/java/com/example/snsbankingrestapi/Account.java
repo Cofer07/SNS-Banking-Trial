@@ -66,4 +66,12 @@ public class Account {
     public List<Transaction> getSent_transactions() {
         return sent_transactions;
     }
+    
+    public User getUser() {
+		return user;
+	}
+    
+    public void setUser(User user) {
+		this.user = user;
+	}
 }
